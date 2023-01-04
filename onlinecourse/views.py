@@ -141,12 +141,15 @@ def show_exam_result(request, course_id, submission_id):
     choice = submission.choices
     grade = 0
     context={}
+    context['ids'] = []
     context['message'] = "Course: " + course + " Choices are: "
     for id in choice:
         if(id.is_correct):
             grade += super(id, self).grade
             context['message'] += str(id) + ","
+            context['ids'].append(id)
     context['message'] += "Your grade is: " + str(grade)
+    context['grade'] = grade
         
 
 
